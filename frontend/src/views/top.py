@@ -1,7 +1,7 @@
 import streamlit as st
 
 from components.music_card import render_track
-from services.api_client import all_genres, get_personalized_top
+from services.api_client import all_artists, get_personalized_top
 from state import go_to
 
 
@@ -13,14 +13,14 @@ def render() -> None:
     st.caption("Подбираем треки под твои предпочтения.")
 
     with st.form("top_form"):
-        genres = st.multiselect("Любимые жанры", all_genres())
+        artists = st.multiselect("Любимые исполнители", all_artists())
         limit = st.slider("Сколько треков показать", 5, 20, 10)
         submitted = st.form_submit_button("Подобрать")
 
     if submitted:
-        tracks = get_personalized_top(genres, limit)
+        tracks = get_personalized_top(artists, limit)
         if not tracks:
-            st.info("По выбранным жанрам ничего не нашлось.")
+            st.info("По выбранным исполнителям ничего не нашлось.")
             return
         for t in tracks:
             render_track(t, show_like_button=True)
