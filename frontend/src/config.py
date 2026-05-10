@@ -2,7 +2,6 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 _SERVICE_ROOT = Path(__file__).resolve().parents[1]
 
 

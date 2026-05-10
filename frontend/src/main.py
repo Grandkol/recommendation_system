@@ -3,7 +3,6 @@ import streamlit as st
 from state import init_session_state
 from views import home, library, popular, top
 
-
 PAGES = {
     "home": home.render,
     "top": top.render,

@@ -4,7 +4,6 @@ import requests
 
 from config import settings
 
-
 API_BASE_URL = settings.backend_url
 _TIMEOUT = settings.request_timeout
 
@@ -31,7 +30,9 @@ def _to_track(d: dict) -> Track:
 
 
 def get_popular(limit: int = 10) -> list[Track]:
-    r = requests.get(f"{API_BASE_URL}/popular", params={"limit": limit}, timeout=_TIMEOUT)
+    r = requests.get(
+        f"{API_BASE_URL}/popular", params={"limit": limit}, timeout=_TIMEOUT
+    )
     r.raise_for_status()
     return [_to_track(t) for t in r.json()]
 
@@ -49,7 +50,9 @@ def get_personalized_top(artists: list[str], limit: int = 10) -> list[Track]:
 def search_tracks(query: str) -> list[Track]:
     if not query:
         return []
-    r = requests.get(f"{API_BASE_URL}/search", params={"query": query}, timeout=_TIMEOUT)
+    r = requests.get(
+        f"{API_BASE_URL}/search", params={"query": query}, timeout=_TIMEOUT
+    )
     r.raise_for_status()
     return [_to_track(t) for t in r.json()]
 

@@ -50,10 +50,7 @@ def search_tracks(query: str) -> list[Track]:
     if not query:
         return []
     q = query.lower()
-    return [
-        t for t in _LIBRARY
-        if q in t.title.lower() or q in t.artist.lower()
-    ]
+    return [t for t in _LIBRARY if q in t.title.lower() or q in t.artist.lower()]
 
 
 def all_artists(limit: int = 200) -> list[str]:
