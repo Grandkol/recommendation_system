@@ -13,11 +13,6 @@ def show_home():
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("🎬 Фильмы", use_container_width=True):
-            st.session_state["page"] = "movies"
-            st.rerun()   # перезапускаем скрипт — роутер покажет нужную страницу
-
-    with col2:
         if st.button("🎮 Игры", use_container_width=True):
             st.session_state["page"] = "games"
             st.rerun()
@@ -55,7 +50,5 @@ def show_games():
 
 if page == "home":
     show_home()
-elif page == "movies":
-    show_movies()
 elif page == "games":
     show_games()
