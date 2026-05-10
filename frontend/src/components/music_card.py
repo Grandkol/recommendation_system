@@ -7,7 +7,10 @@ def render_track(track: Track, *, show_like_button: bool = False) -> None:
     cols = st.columns([5, 1])
     with cols[0]:
         st.markdown(f"**{track.title}** · {track.artist}")
-        st.caption(f"{track.genre} · {track.plays:,} прослушиваний")
+        meta = f"{track.album} · {track.plays:,} прослушиваний"
+        if track.explicit:
+            meta += " · 🅴"
+        st.caption(meta)
     if show_like_button:
         liked_ids = {t.id for t in st.session_state["liked_tracks"]}
         is_liked = track.id in liked_ids
